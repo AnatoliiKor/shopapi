@@ -1,0 +1,45 @@
+<html>
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<div> Add new product</div>
+<div>
+    <form method="post" action="add">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input type="text" name="name" placeholder="Input product`s name"/>
+        <input type="text" name="price" placeholder="price"/>
+        <input type="text" name="amount" placeholder="amount"/>
+        <input type="text" name="description" placeholder="description"/>
+        <button type="submit">Add</button>
+    </form>
+</div>
+<div> Products list</div>
+<form method="post" action="filter">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+    <input type="text" name="filter">
+    <button type="submit">Search</button>
+</form>
+{{#products}}
+    <div>
+        <i>{{id}}</i>
+        <b>name={{name}}</b>
+        <span>price={{price}}</span>
+        <i>amount={{amount}}</i>
+        <b>description="{{description}}"</b>
+
+        <form method="post" action="edit?id={{id}}&name={{name}}&price={{price}}&amount={{amount}}">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <button type="submit">Edit</button></form>
+
+        <form method="post" action="delete?id={{id}}">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <button type="submit">Delete</button>
+        </form>
+    </div>
+{{/products}}
+</body>
+</html>
