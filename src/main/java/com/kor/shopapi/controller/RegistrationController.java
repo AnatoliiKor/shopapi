@@ -36,6 +36,4 @@ public class RegistrationController {
         return "redirect:login";
     }
 
-//    @PostMapping("/login")
-
 }
