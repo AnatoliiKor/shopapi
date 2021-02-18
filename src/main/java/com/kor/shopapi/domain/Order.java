@@ -14,19 +14,32 @@ public class Order {
     private Long id;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+//    @JoinColumn(name = "user_id")
     private User client;
     private LocalDate orderDate;
+
+    @OneToMany(mappedBy = "cart_item_id", fetch = FetchType.EAGER)
+//    @JoinColumn(name = "cartItem_id")
+    private List<CartItem> cartItems;
 
     private String status;
 
     public Order() {
     }
 
-    public Order(User client, LocalDate orderDate, String status) {
+    public Order(User client, List<CartItem> cartItems) {
         this.client = client;
         this.orderDate = LocalDate.now();
+        this.cartItems = cartItems;
         this.status = "registered";
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
     public Long getId() {

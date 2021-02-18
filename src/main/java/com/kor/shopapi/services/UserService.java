@@ -22,7 +22,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findAll() {
-        return (List<User>) userRepository.findAll();
+        return userRepository.findAll();
     }
 
     public void deleteByUserName(Long id) {

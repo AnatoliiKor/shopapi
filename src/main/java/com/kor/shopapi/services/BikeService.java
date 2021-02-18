@@ -23,7 +23,7 @@ public class BikeService {
 //    }
 //
     public List<Bike> findAll() {
-        return (List<Bike>) bikeRepository.findAll();
+        return bikeRepository.findAll();
     }
 
     public List<Bike> findByName(String name) {
