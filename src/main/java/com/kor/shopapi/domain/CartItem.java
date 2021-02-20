@@ -1,8 +1,6 @@
 package com.kor.shopapi.domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class CartItem {
@@ -14,11 +12,12 @@ public class CartItem {
     @JoinColumn(name = "bike_id")
     private Bike bike;
 
-    @OneToOne(optional = true)
-    private User client;
+    @ManyToOne
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
 
-//    @ManyToOne
-//    private Order order;
+//    @OneToOne(optional = false)
+//    private User user;
 
     private Integer amount;
     private Integer price;
@@ -34,21 +33,13 @@ public class CartItem {
         this.price = price;
     }
 
-    public CartItem(Bike bike, Integer amount, Integer price, User client) {
+
+    public CartItem(Bike bike, Integer price, Cart cart) {
         this.bike = bike;
-        this.amount = amount;
+        this.amount = 1;
         this.price = price;
-        this.client = client;
+        this.cart = cart;
 
-    }
-
-
-    public User getClient() {
-        return client;
-    }
-
-    public void setClient(User client) {
-        this.client = client;
     }
 
     public Long getId() {

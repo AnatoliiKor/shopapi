@@ -16,8 +16,8 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private boolean active;
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    private Collection<Order> oders;
+//    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+//    private Collection<Ordering> oders;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
@@ -32,13 +32,13 @@ public class User implements UserDetails {
     public void setId(Long id) {
         this.id = id;
     }
-    public Collection<Order> getOders() {
-        return oders;
-    }
-
-    public void setOders(Collection<Order> oders) {
-        this.oders = oders;
-    }
+//    public Collection<Ordering> getOders() {
+//        return oders;
+//    }
+//
+//    public void setOders(Collection<Ordering> oders) {
+//        this.oders = oders;
+//    }
 
     public String getUsername() {
         return username;

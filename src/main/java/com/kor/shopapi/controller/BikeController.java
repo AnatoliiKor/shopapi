@@ -61,28 +61,28 @@ public class BikeController {
         return "redirect:admin";
     }
 
-    @PostMapping("/buy")
-    public String buy(@AuthenticationPrincipal User client, @RequestParam String id,
-                      @RequestParam Integer price, Model model) {
-        Bike bike = bikeService.findById(Long.valueOf(id));
-        CartItem cartItem = new CartItem(bike, 1, price, client);
-        cartItemService.save(cartItem);
-        return "redirect:cart";
-    }
-
-    @GetMapping("/cart")
-    public String cartItemList(@AuthenticationPrincipal User client, Model model) {
-        List<CartItem> cartItems = cartItemService.findAll();
-        model.addAttribute("user_name", client.getUsername());
-        model.addAttribute("cartItems", cartItems);
-        return "cart";
-    }
-
-    @PostMapping("/deletecartitem")
-    public String deleteById(@RequestParam String id, Model model) {
-        cartItemService.deleteById(Long.valueOf(id));
-        return "redirect:cart";
-    }
+//    @PostMapping("/buy")
+//    public String buy(@AuthenticationPrincipal User user, @RequestParam String id,
+//                      @RequestParam Integer price, Model model) {
+//        Bike bike = bikeService.findById(Long.valueOf(id));
+//        CartItem cartItem = new CartItem(bike, 1, price, user);
+//        cartItemService.save(cartItem);
+//        return "redirect:cart";
+//    }
+//
+//    @GetMapping("/cart")
+//    public String cartItemList(@AuthenticationPrincipal User user, Model model) {
+//        List<CartItem> cartItems = cartItemService.findAll();
+//        model.addAttribute("user_name", user.getUsername());
+//        model.addAttribute("cartItems", cartItems);
+//        return "cart";
+//    }
+//
+//    @PostMapping("/deletecartitem")
+//    public String deleteById(@RequestParam String id, Model model) {
+//        cartItemService.deleteById(Long.valueOf(id));
+//        return "redirect:cart";
+//    }
 //
 //    @PostMapping("/edit")
 //    public String editById(@AuthenticationPrincipal User user,

@@ -1,6 +1,5 @@
 package com.kor.shopapi.services;
 
-import com.kor.shopapi.domain.Product;
 import com.kor.shopapi.domain.User;
 import com.kor.shopapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,10 @@ public class UserService implements UserDetailsService {
 
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public User findById (Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     public void deleteByUserName(Long id) {

@@ -30,7 +30,7 @@
                 <td>"${cartItem.getBike().getDescription()}"</td>
                 <td>${cartItem.amount}</td>
                 <td>${cartItem.price}</td>
-                <td>${cartItem.getClient().username}</td>
+<#--                <td>${cartItem.getUser().username}</td>-->
 <#--                <td>${cartItem.date}</td>-->
 <#--                <td>-->
 <#--                    <form method="post"-->

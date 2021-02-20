@@ -1,23 +1,18 @@
 package com.kor.shopapi.services;
 
-import com.kor.shopapi.domain.Bike;
-import com.kor.shopapi.domain.CartItem;
-import com.kor.shopapi.domain.Order;
-import com.kor.shopapi.repository.BikeRepository;
-import com.kor.shopapi.repository.OrderRepository;
+import com.kor.shopapi.domain.Cart;
+import com.kor.shopapi.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class OrderService {
+public class CartService {
 
     @Autowired
-    private OrderRepository orderRepository;
+    private CartRepository cartRepository;
 
-    public Order save(Order order) {
-        return orderRepository.save(order);
+    public Cart save(Cart cart) {
+        return cartRepository.save(cart);
     }
 ////    public Product save(Product product) {
 ////        return productRepository.save(product);
