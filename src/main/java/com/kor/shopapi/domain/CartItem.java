@@ -16,9 +16,6 @@ public class CartItem {
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
-//    @OneToOne(optional = false)
-//    private User user;
-
     private Integer amount;
     private Integer price;
 
@@ -34,12 +31,15 @@ public class CartItem {
     }
 
 
-    public CartItem(Bike bike, Integer price, Cart cart) {
+    public CartItem(Bike bike, Integer price) {
         this.bike = bike;
         this.amount = 1;
         this.price = price;
-        this.cart = cart;
 
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public Long getId() {

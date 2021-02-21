@@ -1,8 +1,12 @@
 package com.kor.shopapi.controller;
 
 import com.kor.shopapi.domain.Bike;
+import com.kor.shopapi.domain.Cart;
+import com.kor.shopapi.domain.CartItem;
 import com.kor.shopapi.domain.User;
 import com.kor.shopapi.services.BikeService;
+import com.kor.shopapi.services.CartItemService;
+import com.kor.shopapi.services.CartService;
 import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,6 +25,12 @@ public class MainController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CartService cartService;
+
+    @Autowired
+    private CartItemService cartItemService;
+
     @GetMapping("/")
     public String greeting(Model model) {
         return "greeting";
@@ -35,38 +45,11 @@ public class MainController {
             bikes = bikeService.findAll();
         }
         model.addAttribute("bikes", bikes);
-//        model.addAttribute("user_name", user.getUsername());
         model.addAttribute("filter", filter);
         return "main_page";
     }
 
-//    @GetMapping("/shop")
-//    public String main(@AuthenticationPrincipal User user, @RequestParam(required = false) String filter, Model model) {
-//        Iterable<Product> products;
-//        if (filter != null && !filter.isEmpty()) {
-//            products = productService.findByName(filter);
-//        } else {
-//            products = productService.findAll();
-//        }
-//        model.addAttribute("products", products);
-//        model.addAttribute("user_name", user.getUsername());
-//        model.addAttribute("filter", filter);
-//        return "main_page";
-//    }
 
-//    @GetMapping("/client")
-//    public String client(@AuthenticationPrincipal User user, @RequestParam(required = false) String filter, Model model) {
-//        Iterable<Product> products;
-//        if (filter != null && !filter.isEmpty()) {
-//            products = productService.findByName(filter);
-//        } else {
-//            products = productService.findAll();
-//        }
-//        model.addAttribute("products", products);
-//        model.addAttribute("user_name", user.getUsername());
-//        model.addAttribute("filter", filter);
-//        return "client";
-//    }
 
     @GetMapping("/admin")
     public String admin(@AuthenticationPrincipal User user, @RequestParam(required = false) String filter, Model model) {
@@ -85,6 +68,14 @@ public class MainController {
         return "admin";
     }
 
-
+    @GetMapping("/profile")
+    public String profile(@AuthenticationPrincipal User user,
+                          Model model) {
+        List<Cart> carts = user.getCarts();
+        model.addAttribute("carts", carts);
+        List<CartItem> cartItems = cartItemService.findAll();
+        model.addAttribute("cartItems", cartItems);
+        return "profile";
+    }
 
 }

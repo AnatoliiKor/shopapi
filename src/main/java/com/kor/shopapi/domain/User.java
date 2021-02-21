@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,8 +17,11 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private boolean active;
-//    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-//    private Collection<Ordering> oders;
+
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Cart> carts;
+
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
@@ -32,13 +36,9 @@ public class User implements UserDetails {
     public void setId(Long id) {
         this.id = id;
     }
-//    public Collection<Ordering> getOders() {
-//        return oders;
-//    }
-//
-//    public void setOders(Collection<Ordering> oders) {
-//        this.oders = oders;
-//    }
+    public List<Cart> getCarts() {
+        return carts;
+    }
 
     public String getUsername() {
         return username;

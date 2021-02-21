@@ -2,6 +2,7 @@ package com.kor.shopapi.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -14,13 +15,10 @@ public class Cart {
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
-//    @OneToOne
-//    private User user;
 
-    private LocalDate orderDate;
+    private LocalDateTime orderDate;
 
-    @OneToMany(mappedBy = "cart")
-//    @JoinColumn(name = "cartItem_id")
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
     private List<CartItem> cartItems;
 
     private String status;
@@ -34,7 +32,7 @@ public class Cart {
 
     public Cart(User user, List<CartItem> cartItems) {
         this.user = user;
-        this.orderDate = LocalDate.now();
+        this.orderDate = LocalDateTime.now();
         this.cartItems = cartItems;
         this.status = "registered";
     }
@@ -63,12 +61,12 @@ public class Cart {
 //        this.user = user;
 //    }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
     public void setOrderDate() {
-        this.orderDate = LocalDate.now();
+        this.orderDate = LocalDateTime.now();
     }
 
     public String getStatus() {

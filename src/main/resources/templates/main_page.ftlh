@@ -3,6 +3,7 @@
 
 <@c.page>
     <a href="/admin">admin</a>
+    <a href="/profile">my profile</a>
 <#--    <@l.logout/>-->
     <p>
         <a href="/cart">Cart</a>

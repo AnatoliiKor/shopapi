@@ -9,7 +9,7 @@
     <table>
         <thead>
         <tr>
-            <th> id</th>
+<#--            <th> id</th>-->
             <th> model</th>
             <th> brand</th>
             <th> colour</th>
@@ -21,10 +21,14 @@
         </tr>
         </thead>
         <tbody>
+
+        <#if cartItems??>
+
+
         <#list cartItems as cartItem>
             <tr>
-                <td>${cartItem.id}</td>
-                <td>${cartItem.getBike().name}</td>
+<#--                <td>${cartItem.id}</td>-->
+                <td>${cartItem.bike.name}</td>
                 <td>${cartItem.getBike().brand}</td>
                 <td>${cartItem.getBike().colour}</td>
                 <td>"${cartItem.getBike().getDescription()}"</td>
@@ -38,8 +42,8 @@
 <#--                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
 <#--                        <button type="submit">Buy</button>-->
 <#--                    </form>-->
-<#--                </td>-->
-                <td> <form method="post" action="deletecartitem?id=${cartItem.id}">
+                <#--                </td>-->
+                <td> <form method="post" action="deletecartitem?name=${cartItem.bike.name}">
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                         <button type="submit">Delete</button>
                     </form> </td>
@@ -47,7 +51,8 @@
         <#else>
             No products
         </#list>
-        </tbody>
+        </#if>
+                </tbody>
     </table>
 
             <form method="post" action="checkout">
