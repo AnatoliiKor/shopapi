@@ -7,7 +7,6 @@
 <#--    <@l.logout/>-->
     <p>
         <a href="/cart">Cart</a>
-        <b><a href="/user">Users</a></b>
 
     <div> Products list</div>
     <form method="get" action="/shop">
@@ -18,7 +17,7 @@
     <table>
         <thead>
         <tr>
-            <th> id</th>
+<#--            <th> id</th>-->
             <th> model</th>
             <th> brand</th>
             <th> colour</th>
@@ -32,7 +31,7 @@
         <tbody>
         <#list bikes as bike>
             <tr>
-                <td>${bike.id}</td>
+<#--                <td>${bike.id}</td>-->
                 <td>${bike.name}</td>
                 <td>${bike.brand}</td>
                 <td>${bike.colour}</td>
@@ -48,10 +47,6 @@
                     </form>
                 </td>
             </tr>
-        <#--            <form method="post" action="delete?id=${bike.id}">-->
-        <#--                <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
-        <#--                <button type="submit">Delete</button>-->
-        <#--            </form>-->
         <#else>
             No products
         </#list>

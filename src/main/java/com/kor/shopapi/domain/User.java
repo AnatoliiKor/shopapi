@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -17,9 +18,9 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private boolean active;
+    private LocalDate registrationDate;
 
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Cart> carts;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -27,11 +28,19 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-
-
     public Long getId() {
         return id;
     }
+
+    public LocalDate getRegistrationDate() {
+        if (registrationDate==null) registrationDate = LocalDate.now();
+        return registrationDate;
+    }
+
+    public void setRegistrationDate() {
+        this.registrationDate = LocalDate.now();
+    }
+
 
     public void setId(Long id) {
         this.id = id;

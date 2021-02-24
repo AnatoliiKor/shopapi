@@ -6,4 +6,5 @@ ${message!"EMPTY"}
 
 <@l.login path="/registration" button = "Register"/>
 
+    <a href="/shop">main page</a>
 </@c.page>

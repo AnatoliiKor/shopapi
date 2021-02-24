@@ -21,8 +21,6 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
 
     @GetMapping
     public String userList(Model model) {
@@ -40,8 +38,13 @@ public class UserController {
     @PostMapping
     public String userSave(
             @RequestParam String username,
+            @RequestParam (required = false) String active,
             @RequestParam Map<String, String> form,
             @RequestParam("userId") User user){
+
+        if (active!=null)  user.setActive(true);
+        else user.setActive(false);
+
         user.setUsername(username);
         Set<String> roles = Arrays.stream(Role.values())
                 .map(Role::name)
@@ -52,14 +55,14 @@ public class UserController {
                 user.getRoles().add(Role.valueOf(key));
             }
         }
-        userRepository.save(user);
+        userService.save(user);
        return "redirect:/user";
     }
 
-    @PostMapping("/delete")
-    public String deleteByUserName (@RequestParam String id, Map<String, Object> model) {
-        userService.deleteByUserName(Long.valueOf(id));
-        return "redirect:";
-    }
+//    @PostMapping("/delete")
+//    public String deleteByUserName (@RequestParam String id, Map<String, Object> model) {
+//        userService.deleteByUserName(Long.valueOf(id));
+//        return "redirect:";
+//    }
 
 }

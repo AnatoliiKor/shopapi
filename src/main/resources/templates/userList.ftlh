@@ -8,16 +8,19 @@
         <thead>
         <tr>
             <th> Name</th>
-            <th> Password</th>
+<#--            <th> Password</th>-->
+            <th> Is active </th>
+            <th> Registered </th>
             <th> Role</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
         <#list users as user>
             <tr>
                 <td>${user.username}</td>
-                <td>${user.password}</td>
+<#--                <td>${user.password}</td>-->
+                <td><input type="checkbox" ${user.active?string("checked","")} disabled></td>
+                <td>${user.registrationDate}</td>
                 <td><#list user.roles as role>${role}<#sep>, </#list></td>
                 <td><a href="/user/${user.id}">edit</a></td>
                 <td>

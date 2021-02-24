@@ -4,9 +4,6 @@ import com.kor.shopapi.domain.Bike;
 import com.kor.shopapi.domain.CartItem;
 import com.kor.shopapi.domain.Cart;
 import com.kor.shopapi.domain.User;
-import com.kor.shopapi.repository.CartItemRepository;
-import com.kor.shopapi.repository.CartRepository;
-import com.kor.shopapi.repository.UserRepository;
 import com.kor.shopapi.services.BikeService;
 import com.kor.shopapi.services.CartItemService;
 import com.kor.shopapi.services.CartService;
@@ -18,19 +15,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class CartController {
-    @Autowired
-    CartItemRepository cartItemRepository;
+
     @Autowired
     UserService userService;
-    @Autowired
-    CartRepository cartRepository;
     @Autowired
     CartItemService cartItemService;
     @Autowired
@@ -70,10 +63,6 @@ public class CartController {
         return "redirect:cart";
     }
 
-
-
-
-
     @PostMapping("/checkout")
     public String buy(@AuthenticationPrincipal User client,
                       HttpSession httpSession,
@@ -82,9 +71,7 @@ public class CartController {
         if (cartItems == null) return "redirect:shop";
         User user = userService.findById(client.getId());
         Cart cart = new Cart(user, cartItems);
-        System.out.println(cart.getId());
         cartService.save(cart);
-        System.out.println(cart.getId());
         for(CartItem c : cartItems) {
             c.setCart(cart);
             cartItemService.save(c);

@@ -2,6 +2,7 @@ package com.kor.shopapi.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Bike {
@@ -18,6 +19,10 @@ public class Bike {
     private Integer amount;
     private LocalDate date;
 
+
+    @OneToMany(mappedBy = "bike", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<CartItem> cartItems;
+
     public Bike() {
         this.setDate();
     }
@@ -28,6 +33,14 @@ public class Bike {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
     public String getCategory() {

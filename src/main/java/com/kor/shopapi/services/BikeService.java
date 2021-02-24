@@ -19,10 +19,7 @@ public class BikeService {
     public Bike save(Bike bike) {
         return bikeRepository.save(bike);
     }
-//    public Product save(Product product) {
-//        return productRepository.save(product);
-//    }
-//
+
     public List<Bike> findAll() {
         return bikeRepository.findAll();
     }
@@ -30,10 +27,11 @@ public class BikeService {
     public List<Bike> findByName(String name) {
         return bikeRepository.findByName(name);
     }
-//    @Transactional
-//    public void deleteById(Integer id) {
-//        productRepository.deleteById(id);
-//    }
+
+    @Transactional
+    public void deleteById(Long id) {
+        bikeRepository.deleteById(id);
+    }
 
     public Bike findById(Long id) {
         Bike bike = bikeRepository.findById(id).get();

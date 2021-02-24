@@ -8,11 +8,11 @@ public class CartItem {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "bike_id")
+    @ManyToOne
+    @JoinColumn(name = "bike_id", nullable = true)
     private Bike bike;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
