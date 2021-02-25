@@ -18,6 +18,7 @@ public class Bike {
     private Integer price;
     private Integer amount;
     private LocalDate date;
+    private String filename;
 
 
     @OneToMany(mappedBy = "bike", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
@@ -29,6 +30,14 @@ public class Bike {
 
     public long getId() {
         return id;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     public void setId(long id) {

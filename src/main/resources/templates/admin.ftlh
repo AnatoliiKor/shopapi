@@ -7,22 +7,23 @@
     <div> ADMIN</div>
 
     <p>
-    <a href="/registration">Add new user</a>
+        <a href="/registration">Add new user</a>
     <p>
-    <a href="/user">Show all users</a>
+        <a href="/user">Show all users</a>
     <p>
-    <a href="/newbike">Add new BIKE</a>
+        <a href="/newbike">Add new BIKE</a>
 
     <p>
     <div> Products list</div>
     <form method="get" action="admin">
         <input type="text" name="filter" value="${filter!}">
         <button type="submit">Search</button>
-<#--        ${message!""}-->
+        <#--        ${message!""}-->
     </form>
     <table>
         <thead>
         <tr>
+            <th> Photo </th>
             <th> id</th>
             <th> model</th>
             <th> brand</th>
@@ -37,6 +38,10 @@
         <tbody>
         <#list bikes as bike>
             <tr>
+                <td><#if bike.filename??>
+                        <img src="/img/${bike.filename}">
+                    </#if>
+                </td>
                 <td>${bike.id}</td>
                 <td>${bike.name}</td>
                 <td>${bike.brand}</td>

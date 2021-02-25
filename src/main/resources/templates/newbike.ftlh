@@ -5,7 +5,7 @@
     <div> Add new BIKE</div>
 
     <div>
-        <form method="post" action="add">
+        <form method="post" action="add" enctype="multipart/form-data">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <div> model = <input type="text" name="name" /></div>
                         <div> brand = <select name="brand" size="1">
@@ -35,6 +35,8 @@
                         </select></div>
                         <div>price <input type="text" name="price" /> $ </div>
                         <div>amount <input type="text" name="amount" /></div>
+                        <div>Select image <input type="file" name="file" /></div>
+
             <button type="submit">Add</button>
 
         </form>

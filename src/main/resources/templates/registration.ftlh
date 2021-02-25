@@ -2,7 +2,7 @@
 <#import "parts/login.ftlh" as l>
 <@c.page>
 Add new user
-${message!"EMPTY"}
+${message!}
 
 <@l.login path="/registration" button = "Register"/>
 

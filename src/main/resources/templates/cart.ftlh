@@ -9,6 +9,7 @@
     <table>
         <thead>
         <tr>
+            <th> Photo </th>
             <th> model</th>
             <th> brand</th>
             <th> colour</th>
@@ -23,6 +24,10 @@
         <#if cartItems??>
         <#list cartItems as cartItem>
             <tr>
+                <td><#if bike.filename??>
+                        <img src="/img/${bike.filename}">
+                    </#if>
+                </td>
                 <td>${cartItem.bike.name}</td>
                 <td>${cartItem.getBike().brand}</td>
                 <td>${cartItem.getBike().colour}</td>

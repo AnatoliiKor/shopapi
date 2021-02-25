@@ -17,7 +17,7 @@
     <table>
         <thead>
         <tr>
-<#--            <th> id</th>-->
+            <th> Photo </th>
             <th> model</th>
             <th> brand</th>
             <th> colour</th>
@@ -32,6 +32,10 @@
 
         <#list bikes as bike>
             <tr>
+            <td><#if bike.filename??>
+                    <img src="/img/${bike.filename}">
+                </#if>
+            </td>
 <#--                <td>${bike.id}</td>-->
                 <td>${bike.name}</td>
                 <td>${bike.brand}</td>
@@ -47,8 +51,9 @@
                         <button type="submit">Buy</button>
                     </form>
                 </td>
+
             </tr>
-        <#else>
+                   <#else>
             No products
         </#list>
         </tbody>

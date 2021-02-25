@@ -9,26 +9,27 @@ import com.kor.shopapi.services.BikeService;
 import com.kor.shopapi.services.CartItemService;
 import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
 public class BikeController {
-    @Autowired
-    BikeRepository bikeRepository;
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private BikeService bikeService;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @GetMapping
     public String userList(Model model) {
@@ -42,7 +43,19 @@ public class BikeController {
     }
     
     @PostMapping("/add")
-    public String add(@ModelAttribute("bike") Bike bike) {
+    public String add(@ModelAttribute("bike") Bike bike,
+                      @RequestParam("file")MultipartFile file) throws IOException {
+        if (file != null) {
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+            bike.setFilename(resultFilename);
+        }
         bikeService.save(bike);
         return "redirect:admin";
     }
@@ -67,7 +80,20 @@ public class BikeController {
             @RequestParam String description,
             @RequestParam String price,
             @RequestParam String amount,
-            @RequestParam("bikeId") Bike bike) {
+            @RequestParam("bikeId") Bike bike,
+            @RequestParam("file")MultipartFile file) throws IOException {
+
+        if (file != null) {
+                File uploadDir = new File(uploadPath);
+                if (!uploadDir.exists()) {
+                    uploadDir.mkdir();
+                }
+                String uuidFile = UUID.randomUUID().toString();
+                String resultFilename = uuidFile + "." + file.getOriginalFilename();
+
+                file.transferTo(new File(uploadPath + "/" + resultFilename));
+                bike.setFilename(resultFilename);
+            }
         bike.setName(name);
 //        bike.setCategory(category);
 //        bike.setBrand(brand);
@@ -76,33 +102,10 @@ public class BikeController {
         bike.setPrice(Integer.valueOf(price));
         bike.setAmount(Integer.valueOf(amount));
 
+
         bikeService.save(bike);
         return "redirect:/admin";
     }
-
-
-
-
-
-
-//    @PostMapping("/deletecartitem")
-//    public String deleteById(@RequestParam String id, Model model) {
-//        cartItemService.deleteById(Long.valueOf(id));
-//        return "redirect:cart";
-//    }
-//
-//    @PostMapping("/edit")
-//    public String editById(@AuthenticationPrincipal User user,
-//                           @RequestParam String id,
-//                           @RequestParam String name,
-//                           @RequestParam Integer price,
-//                           @RequestParam Integer amount, Map<String, Object> model) {
-//        String description = "";
-//        Product product = new Product(name, price, amount, description, user);
-//        productService.save(product);
-//        return "redirect:admin";
-//    }
-
 
 
 }
