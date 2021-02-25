@@ -33,8 +33,7 @@ public class CartController {
 
     @PostMapping("/buy")
     public String buy(@RequestParam String id,
-                      HttpSession httpSession,
-                      Model model) {
+                      HttpSession httpSession) {
         Bike bike = bikeService.findById(Long.valueOf(id));
         int price = bike.getPrice();
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
@@ -52,21 +51,31 @@ public class CartController {
                                HttpSession httpSession,
                                Model model) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
+        if (cartItems == null) return "redirect:shop";
+        int total = 0;
+        for (CartItem c : cartItems) {
+            total += c.getBike().getPrice();}
+
         model.addAttribute("user_name", user.getUsername());
+        model.addAttribute("total", total);
         model.addAttribute("cartItems", cartItems);
         return "cart";
     }
 
     @PostMapping("/deletecartitem")
-    public String deleteById(@RequestParam String id, Model model) {
-        cartItemService.deleteById(Long.valueOf(id));
+    public String deleteById(@RequestParam String id,
+                             HttpSession httpSession) {
+        List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
+        for (CartItem c : cartItems) {
+            if (c.getBike().getId() == Long.valueOf(id)) {cartItems.remove(c);return "redirect:cart";}
+        }
+        httpSession.setAttribute("cartItems", cartItems);
         return "redirect:cart";
     }
 
     @PostMapping("/checkout")
     public String buy(@AuthenticationPrincipal User client,
-                      HttpSession httpSession,
-                      Model model) {
+                      HttpSession httpSession) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
         if (cartItems == null) return "redirect:shop";
         User user = userService.findById(client.getId());

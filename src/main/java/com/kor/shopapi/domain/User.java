@@ -20,6 +20,7 @@ public class User implements UserDetails {
     private boolean active;
     private LocalDate registrationDate;
 
+    // TODO cascade delete
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Cart> carts;
 
@@ -45,6 +46,7 @@ public class User implements UserDetails {
     public void setId(Long id) {
         this.id = id;
     }
+
     public List<Cart> getCarts() {
         return carts;
     }

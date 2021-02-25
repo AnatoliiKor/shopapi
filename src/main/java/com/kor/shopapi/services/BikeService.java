@@ -3,6 +3,7 @@ package com.kor.shopapi.services;
 import com.kor.shopapi.domain.Bike;
 import com.kor.shopapi.repository.BikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,8 @@ public class BikeService {
         return bikeRepository.findAll();
     }
 
+
+
     public List<Bike> findByName(String name) {
         return bikeRepository.findByName(name);
     }
@@ -37,4 +40,8 @@ public class BikeService {
         Bike bike = bikeRepository.findById(id).get();
         return bike;
     }
+
+//    public List<Bike> sortByBrand() {
+//        return bikeRepository.findAllOrderByBrand();
+//    }
 }

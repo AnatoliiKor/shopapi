@@ -59,10 +59,10 @@ public class UserController {
        return "redirect:/user";
     }
 
-//    @PostMapping("/delete")
-//    public String deleteByUserName (@RequestParam String id, Map<String, Object> model) {
-//        userService.deleteByUserName(Long.valueOf(id));
-//        return "redirect:";
-//    }
+    @PostMapping("/delete")
+    public String deleteUser (@RequestParam String id, Model model) {
+        userService.deleteUser(Long.valueOf(id));
+        return "redirect:/user";
+    }
 
 }

@@ -9,41 +9,27 @@
     <table>
         <thead>
         <tr>
-<#--            <th> id</th>-->
             <th> model</th>
             <th> brand</th>
             <th> colour</th>
             <th> description</th>
             <th> amount</th>
             <th> price, $</th>
-<#--            <th> date</th>-->
             <th></th>
         </tr>
         </thead>
         <tbody>
 
         <#if cartItems??>
-
-
         <#list cartItems as cartItem>
             <tr>
-<#--                <td>${cartItem.id}</td>-->
                 <td>${cartItem.bike.name}</td>
                 <td>${cartItem.getBike().brand}</td>
                 <td>${cartItem.getBike().colour}</td>
                 <td>"${cartItem.getBike().getDescription()}"</td>
                 <td>${cartItem.amount}</td>
                 <td>${cartItem.price}</td>
-<#--                <td>${cartItem.getUser().username}</td>-->
-<#--                <td>${cartItem.date}</td>-->
-<#--                <td>-->
-<#--                    <form method="post"-->
-<#--                          action="buy?id=${bike.id}&name=${bike.name}&price=${bike.price}&amount=${bike.amount}">-->
-<#--                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
-<#--                        <button type="submit">Buy</button>-->
-<#--                    </form>-->
-                <#--                </td>-->
-                <td> <form method="post" action="deletecartitem?name=${cartItem.bike.name}">
+                <td> <form method="post" action="deletecartitem?id=${cartItem.bike.id}">
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                         <button type="submit">Delete</button>
                     </form> </td>
@@ -54,13 +40,13 @@
         </#if>
                 </tbody>
     </table>
-
+    <p>
+        <span style="color: green; font-size: large; ">  Total price is ${total} $   </span>
+    <p>
             <form method="post" action="checkout">
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <button type="submit">Check out</button>
             </form>
-
-
 
     <a href="/shop">continue shopping</a>
 </@c.page>

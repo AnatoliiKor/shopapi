@@ -29,6 +29,7 @@
         </tr>
         </thead>
         <tbody>
+
         <#list bikes as bike>
             <tr>
 <#--                <td>${bike.id}</td>-->

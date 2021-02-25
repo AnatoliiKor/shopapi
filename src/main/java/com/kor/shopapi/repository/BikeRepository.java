@@ -11,5 +11,8 @@ public interface BikeRepository extends JpaRepository <Bike, Long> {
 
     List<Bike> findByName (String name);
 
+
+    List<Bike> findAllOrderByBrand(String brand);
+
 }
 

@@ -71,11 +71,20 @@ public class MainController {
     @GetMapping("/profile")
     public String profile(@AuthenticationPrincipal User user,
                           Model model) {
+//        User user = userService.findById(client.getId());
+//        TODO repeat the carts as items
         List<Cart> carts = user.getCarts();
         model.addAttribute("carts", carts);
         List<CartItem> cartItems = cartItemService.findAll();
         model.addAttribute("cartItems", cartItems);
         return "profile";
     }
+
+//    @GetMapping("/sortByBrand")
+//    public String sortByBrand(Model model) {
+//        List<Bike> bikes = bikeService.sortByBrand();
+//        model.addAttribute("bikes", bikes);
+//        return "redirect: shop";
+//    }
 
 }
