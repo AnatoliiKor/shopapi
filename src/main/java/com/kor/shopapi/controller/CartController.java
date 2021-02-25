@@ -51,14 +51,17 @@ public class CartController {
                                HttpSession httpSession,
                                Model model) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
-        if (cartItems == null) return "redirect:shop";
         int total = 0;
-        for (CartItem c : cartItems) {
-            total += c.getBike().getPrice();}
-
-        model.addAttribute("user_name", user.getUsername());
-        model.addAttribute("total", total);
-        model.addAttribute("cartItems", cartItems);
+        if (cartItems != null) {
+            for (CartItem c : cartItems) {
+                total += c.getBike().getPrice();
+            }
+        }
+            model.addAttribute("user_name", user.getUsername());
+            model.addAttribute("total", total);
+            model.addAttribute("cartItems", cartItems);
+            httpSession.setAttribute("total", total);
+            if (total == 0) httpSession.setAttribute("cartItems", null);
         return "cart";
     }
 
@@ -79,7 +82,7 @@ public class CartController {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
         if (cartItems == null) return "redirect:shop";
         User user = userService.findById(client.getId());
-        Cart cart = new Cart(user, cartItems);
+        Cart cart = new Cart(user, cartItems, httpSession.getAttribute("total"));
         cartService.save(cart);
         for(CartItem c : cartItems) {
             c.setCart(cart);

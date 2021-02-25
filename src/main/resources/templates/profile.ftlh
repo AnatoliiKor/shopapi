@@ -10,6 +10,7 @@
         <p>
             <i>Order date is ${cart.orderDate}</i>
             <i>Order status is ${cart.status}</i>
+            <i>Order total is ${cart.total}</i>
 
         <table>
         <thead>

@@ -21,6 +21,8 @@ public class Cart {
     private List<CartItem> cartItems;
 
     private String status;
+    private int total;
+
 
     public Cart() {
     }
@@ -29,11 +31,20 @@ public class Cart {
         this.user = user;
     }
 
-    public Cart(User user, List<CartItem> cartItems) {
+    public Cart(User user, List<CartItem> cartItems, Object total) {
         this.user = user;
         this.orderDate = LocalDateTime.now();
         this.cartItems = cartItems;
+        this.total = (Integer) total;
         this.status = "registered";
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public List<CartItem> getCartItems() {
