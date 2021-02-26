@@ -1,0 +1,4 @@
+INSERT INTO pg_catalog.pg_stat_user_indexes (relid, indexrelid, schemaname, relname, indexrelname, idx_scan, idx_tup_read, idx_tup_fetch) VALUES (16838, 16844, 'public', 'usr', 'usr_pkey', 1636, 1598, 1585);
+INSERT INTO pg_catalog.pg_stat_user_indexes (relid, indexrelid, schemaname, relname, indexrelname, idx_scan, idx_tup_read, idx_tup_fetch) VALUES (17232, 17238, 'public', 'bike', 'bike_pkey', 973, 803, 800);
+INSERT INTO pg_catalog.pg_stat_user_indexes (relid, indexrelid, schemaname, relname, indexrelname, idx_scan, idx_tup_read, idx_tup_fetch) VALUES (17240, 17243, 'public', 'cart', 'cart_pkey', 817, 737, 719);
+INSERT INTO pg_catalog.pg_stat_user_indexes (relid, indexrelid, schemaname, relname, indexrelname, idx_scan, idx_tup_read, idx_tup_fetch) VALUES (17245, 17248, 'public', 'cart_item', 'cart_item_pkey', 18, 16, 16);

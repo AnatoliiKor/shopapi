@@ -1,0 +1,1 @@
+INSERT INTO pg_catalog.pg_sequence (seqrelid, seqtypid, seqstart, seqincrement, seqmax, seqmin, seqcache, seqcycle) VALUES (16817, 20, 1, 1, 9223372036854775807, 1, 1, false);

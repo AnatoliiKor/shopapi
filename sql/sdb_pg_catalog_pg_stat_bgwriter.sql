@@ -1,0 +1,1 @@
+INSERT INTO pg_catalog.pg_stat_bgwriter (checkpoints_timed, checkpoints_req, checkpoint_write_time, checkpoint_sync_time, buffers_checkpoint, buffers_clean, maxwritten_clean, buffers_backend, buffers_backend_fsync, buffers_alloc, stats_reset) VALUES (250, 0, 26546, 137, 263, 0, 0, 62, 0, 3417, '2021-02-24 21:33:28.767586');

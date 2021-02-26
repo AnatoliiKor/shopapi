@@ -1,0 +1,10 @@
+INSERT INTO information_schema.enabled_roles (role_name) VALUES ('pg_monitor');
+INSERT INTO information_schema.enabled_roles (role_name) VALUES ('pg_read_all_settings');
+INSERT INTO information_schema.enabled_roles (role_name) VALUES ('pg_read_all_stats');
+INSERT INTO information_schema.enabled_roles (role_name) VALUES ('pg_stat_scan_tables');
+INSERT INTO information_schema.enabled_roles (role_name) VALUES ('pg_read_server_files');
+INSERT INTO information_schema.enabled_roles (role_name) VALUES ('pg_write_server_files');
+INSERT INTO information_schema.enabled_roles (role_name) VALUES ('pg_execute_server_program');
+INSERT INTO information_schema.enabled_roles (role_name) VALUES ('pg_signal_backend');
+INSERT INTO information_schema.enabled_roles (role_name) VALUES ('postgres');
+INSERT INTO information_schema.enabled_roles (role_name) VALUES ('toha');

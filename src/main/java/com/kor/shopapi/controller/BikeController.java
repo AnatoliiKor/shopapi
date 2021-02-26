@@ -45,7 +45,7 @@ public class BikeController {
     @PostMapping("/add")
     public String add(@ModelAttribute("bike") Bike bike,
                       @RequestParam("file")MultipartFile file) throws IOException {
-        if (file != null) {
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
@@ -83,7 +83,7 @@ public class BikeController {
             @RequestParam("bikeId") Bike bike,
             @RequestParam("file")MultipartFile file) throws IOException {
 
-        if (file != null) {
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
                 File uploadDir = new File(uploadPath);
                 if (!uploadDir.exists()) {
                     uploadDir.mkdir();

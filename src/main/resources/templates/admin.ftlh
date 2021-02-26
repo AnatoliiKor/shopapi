@@ -65,6 +65,4 @@
         </tbody>
     </table>
 
-    <a href="/shop">main page</a>
-
 </@c.page>

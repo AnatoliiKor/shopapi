@@ -2,11 +2,8 @@
 <#import "parts/login.ftlh" as l>
 
 <@c.page>
-    <a href="/admin">admin</a>
-    <a href="/profile">my profile</a>
 <#--    <@l.logout/>-->
     <p>
-        <a href="/cart">Cart</a>
 
     <div> Products list</div>
     <form method="get" action="/shop">

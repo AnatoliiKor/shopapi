@@ -38,6 +38,7 @@ public class MainController {
 
     @GetMapping("/shop")
     public String main(@RequestParam(required = false) String filter, Model model) {
+//        TODO images on start
         List<Bike> bikes;
         if (filter != null && !filter.isEmpty()) {
             bikes = bikeService.findByName(filter);

@@ -24,14 +24,14 @@
         <#if cartItems??>
         <#list cartItems as cartItem>
             <tr>
-                <td><#if bike.filename??>
-                        <img src="/img/${bike.filename}">
+                <td><#if cartItem.bike.filename??>
+                        <img src="/img/${cartItem.bike.filename}">
                     </#if>
                 </td>
                 <td>${cartItem.bike.name}</td>
-                <td>${cartItem.getBike().brand}</td>
-                <td>${cartItem.getBike().colour}</td>
-                <td>"${cartItem.getBike().getDescription()}"</td>
+                <td>${cartItem.bike.brand}</td>
+                <td>${cartItem.bike.colour}</td>
+                <td>"${cartItem.bike.getDescription()}"</td>
                 <td>${cartItem.amount}</td>
                 <td>${cartItem.price}</td>
                 <td> <form method="post" action="deletecartitem?id=${cartItem.bike.id}">

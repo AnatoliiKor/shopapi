@@ -1,0 +1,5 @@
+INSERT INTO pg_catalog.pg_stat_xact_user_tables (relid, schemaname, relname, seq_scan, seq_tup_read, idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd) VALUES (16835, 'public', 'user_role', 0, 0, null, null, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_xact_user_tables (relid, schemaname, relname, seq_scan, seq_tup_read, idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd) VALUES (17245, 'public', 'cart_item', 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_xact_user_tables (relid, schemaname, relname, seq_scan, seq_tup_read, idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd) VALUES (16838, 'public', 'usr', 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_xact_user_tables (relid, schemaname, relname, seq_scan, seq_tup_read, idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd) VALUES (17232, 'public', 'bike', 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_xact_user_tables (relid, schemaname, relname, seq_scan, seq_tup_read, idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd) VALUES (17240, 'public', 'cart', 0, 0, 0, 0, 0, 0, 0, 0);

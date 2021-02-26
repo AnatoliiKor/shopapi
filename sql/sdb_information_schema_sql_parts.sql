@@ -1,0 +1,10 @@
+INSERT INTO information_schema.sql_parts (feature_id, feature_name, is_supported, is_verified_by, comments) VALUES ('1', 'Framework (SQL/Framework)', 'NO', null, '');
+INSERT INTO information_schema.sql_parts (feature_id, feature_name, is_supported, is_verified_by, comments) VALUES ('2', 'Foundation (SQL/Foundation)', 'NO', null, '');
+INSERT INTO information_schema.sql_parts (feature_id, feature_name, is_supported, is_verified_by, comments) VALUES ('3', 'Call-Level Interface (SQL/CLI)', 'NO', null, '');
+INSERT INTO information_schema.sql_parts (feature_id, feature_name, is_supported, is_verified_by, comments) VALUES ('4', 'Persistent Stored Modules (SQL/PSM)', 'NO', null, '');
+INSERT INTO information_schema.sql_parts (feature_id, feature_name, is_supported, is_verified_by, comments) VALUES ('9', 'Management of External Data (SQL/MED)', 'NO', null, '');
+INSERT INTO information_schema.sql_parts (feature_id, feature_name, is_supported, is_verified_by, comments) VALUES ('10', 'Object Language Bindings (SQL/OLB)', 'NO', null, '');
+INSERT INTO information_schema.sql_parts (feature_id, feature_name, is_supported, is_verified_by, comments) VALUES ('11', 'Information and Definition Schema (SQL/Schemata)', 'NO', null, '');
+INSERT INTO information_schema.sql_parts (feature_id, feature_name, is_supported, is_verified_by, comments) VALUES ('13', 'Routines and Types Using the Java Programming Language (SQL/JRT)', 'NO', null, '');
+INSERT INTO information_schema.sql_parts (feature_id, feature_name, is_supported, is_verified_by, comments) VALUES ('14', 'XML-Related Specifications (SQL/XML)', 'NO', null, '');
+INSERT INTO information_schema.sql_parts (feature_id, feature_name, is_supported, is_verified_by, comments) VALUES ('15', 'Multi-Dimensional Arrays (SQL/MDA)', 'NO', null, '');

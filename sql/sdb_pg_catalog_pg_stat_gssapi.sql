@@ -1,0 +1,17 @@
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (11252, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (12868, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (2284, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (2000, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (16760, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (17020, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (10784, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (16708, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (10756, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (13168, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (17156, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (1576, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (13968, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (14924, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (14872, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (16368, false, null, false);
+INSERT INTO pg_catalog.pg_stat_gssapi (pid, gss_authenticated, principal, encrypted) VALUES (15300, false, null, false);

@@ -1,0 +1,9 @@
+INSERT INTO pg_catalog.pg_stat_database_conflicts (datid, datname, confl_tablespace, confl_lock, confl_snapshot, confl_bufferpin, confl_deadlock) VALUES (13442, 'postgres', 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_database_conflicts (datid, datname, confl_tablespace, confl_lock, confl_snapshot, confl_bufferpin, confl_deadlock) VALUES (16394, 'test', 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_database_conflicts (datid, datname, confl_tablespace, confl_lock, confl_snapshot, confl_bufferpin, confl_deadlock) VALUES (1, 'template1', 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_database_conflicts (datid, datname, confl_tablespace, confl_lock, confl_snapshot, confl_bufferpin, confl_deadlock) VALUES (13441, 'template0', 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_database_conflicts (datid, datname, confl_tablespace, confl_lock, confl_snapshot, confl_bufferpin, confl_deadlock) VALUES (16435, 'test2', 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_database_conflicts (datid, datname, confl_tablespace, confl_lock, confl_snapshot, confl_bufferpin, confl_deadlock) VALUES (16469, 'car_shop', 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_database_conflicts (datid, datname, confl_tablespace, confl_lock, confl_snapshot, confl_bufferpin, confl_deadlock) VALUES (16783, 'cars_db', 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_database_conflicts (datid, datname, confl_tablespace, confl_lock, confl_snapshot, confl_bufferpin, confl_deadlock) VALUES (17131, 'shop_car', 0, 0, 0, 0, 0);
+INSERT INTO pg_catalog.pg_stat_database_conflicts (datid, datname, confl_tablespace, confl_lock, confl_snapshot, confl_bufferpin, confl_deadlock) VALUES (16808, 'sdb', 0, 0, 0, 0, 0);

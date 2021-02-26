@@ -1,0 +1,1 @@
+INSERT INTO pg_catalog.pg_sequences (schemaname, sequencename, sequenceowner, data_type, start_value, min_value, max_value, increment_by, cycle, cache_size, last_value) VALUES ('public', 'hibernate_sequence', 'toha', bigint, 1, 1, 9223372036854775807, 1, false, 1, 622);

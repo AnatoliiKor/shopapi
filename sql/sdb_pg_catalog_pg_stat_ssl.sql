@@ -1,0 +1,17 @@
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (11252, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (12868, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (2284, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (2000, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (16760, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (17020, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (10784, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (16708, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (10756, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (13168, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (17156, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (1576, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (13968, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (14924, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (14872, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (16368, false, null, null, null, null, null, null, null);
+INSERT INTO pg_catalog.pg_stat_ssl (pid, ssl, version, cipher, bits, compression, client_dn, client_serial, issuer_dn) VALUES (16452, false, null, null, null, null, null, null, null);

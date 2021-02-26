@@ -1,6 +1,5 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-    <a href="/shop">main page</a>
     <p>
     <div>My Orders List</div>
 
