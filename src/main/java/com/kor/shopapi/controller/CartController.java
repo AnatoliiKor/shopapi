@@ -47,8 +47,8 @@ public class CartController {
     }
 
     @GetMapping("/cart")
-    public String cartItemList(@AuthenticationPrincipal User user,
-                               HttpSession httpSession,
+    public String cartItemList(HttpSession httpSession,
+//                               @AuthenticationPrincipal User user,
                                Model model) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
         int total = 0;
@@ -57,7 +57,7 @@ public class CartController {
                 total += c.getBike().getPrice();
             }
         }
-            model.addAttribute("user_name", user.getUsername());
+//            model.addAttribute("user_name", user.getUsername());
             model.addAttribute("total", total);
             model.addAttribute("cartItems", cartItems);
             httpSession.setAttribute("total", total);

@@ -9,6 +9,7 @@ import com.kor.shopapi.services.CartItemService;
 import com.kor.shopapi.services.CartService;
 import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,6 +54,7 @@ public class MainController {
 
 
     @GetMapping("/admin")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String admin(@AuthenticationPrincipal User user, @RequestParam(required = false) String filter, Model model) {
         Iterable<User> users = userService.findAll();
         List<Bike> bikes;
