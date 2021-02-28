@@ -2,7 +2,7 @@
 
 <@c.page>
 
-    <div> Add new BIKE</div>
+    <h2> Add new BIKE</h2>
 
     <div>
         <form method="post" action="add" enctype="multipart/form-data">
@@ -41,8 +41,5 @@
 
         </form>
     </div>
-
-
-    <a href="/shop">main page</a>
 
 </@c.page>

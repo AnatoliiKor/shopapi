@@ -1,6 +1,6 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-User Editor
+<h2>User Editor</h2>
 <p>
     <form method="post" action="/user">
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>

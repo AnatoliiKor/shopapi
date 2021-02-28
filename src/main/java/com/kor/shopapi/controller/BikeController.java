@@ -1,12 +1,7 @@
 package com.kor.shopapi.controller;
 
 import com.kor.shopapi.domain.Bike;
-import com.kor.shopapi.domain.Role;
-import com.kor.shopapi.domain.User;
-import com.kor.shopapi.repository.BikeRepository;
-import com.kor.shopapi.repository.UserRepository;
 import com.kor.shopapi.services.BikeService;
-import com.kor.shopapi.services.CartItemService;
 import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,8 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 @Controller
 public class BikeController {
@@ -31,11 +25,11 @@ public class BikeController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    @GetMapping
-    public String userList(Model model) {
-        model.addAttribute(userService.findAll());
-        return "userList";
-    }
+//    @GetMapping
+//    public String userList(Model model) {
+//        model.addAttribute(userService.findAll());
+//        return "userList";
+//    }
 
     @GetMapping("/newbike")
     public String newBike() {
@@ -74,9 +68,6 @@ public class BikeController {
 
     @PostMapping("/bike/{bike.id}")
     public String bikeSave(@RequestParam String name,
-//            @RequestParam String category,
-//            @RequestParam String brand,
-//            @RequestParam String colour,
             @RequestParam String description,
             @RequestParam String price,
             @RequestParam String amount,
@@ -95,9 +86,6 @@ public class BikeController {
                 bike.setFilename(resultFilename);
             }
         bike.setName(name);
-//        bike.setCategory(category);
-//        bike.setBrand(brand);
-//        bike.setColour(colour);
         bike.setDescription(description);
         bike.setPrice(Integer.valueOf(price));
         bike.setAmount(Integer.valueOf(amount));

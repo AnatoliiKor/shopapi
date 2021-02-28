@@ -5,7 +5,7 @@
 <#--    <@l.logout/>-->
     <p>
 
-    <div> Products list</div>
+        <h2> BIKES SHOP</h2>
     <form method="get" action="/shop">
         <input type="text" name="filter" value="${filter!}">
         <button type="submit">Search</button>

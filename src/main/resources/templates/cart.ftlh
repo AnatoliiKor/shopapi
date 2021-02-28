@@ -2,10 +2,9 @@
 <#import "parts/login.ftlh" as l>
 
 <@c.page>
-    <@l.logout/>
     <p>
-    <div> Your CART</div>
-
+    <h2> My CART</h2>
+    <p>
     <table>
         <thead>
         <tr>
@@ -47,11 +46,12 @@
     </table>
     <p>
         <span style="color: green; font-size: large; ">  Total price is ${total} $   </span>
+
     <p>
+    <a href="/shop">continue shopping</a>
             <form method="post" action="checkout">
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <button type="submit">Check out</button>
             </form>
 
-    <a href="/shop">continue shopping</a>
 </@c.page>

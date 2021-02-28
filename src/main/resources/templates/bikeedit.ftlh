@@ -1,6 +1,6 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-    Bike Editor
+    <h2>Bike Editor</h2>
 
     <form method="post" action="/bike/${bike.id}" enctype="multipart/form-data">
         <div><#if bike.filename??>

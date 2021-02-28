@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -39,7 +40,6 @@ public class MainController {
 
     @GetMapping("/shop")
     public String main(@RequestParam(required = false) String filter, Model model) {
-//        TODO images on start
         List<Bike> bikes;
         if (filter != null && !filter.isEmpty()) {
             bikes = bikeService.findByName(filter);
@@ -72,14 +72,13 @@ public class MainController {
     }
 
     @GetMapping("/profile")
-    public String profile(@AuthenticationPrincipal User user,
+    public String profile(HttpServletRequest httpServletRequest,
                           Model model) {
-//        User user = userService.findById(client.getId());
-//        TODO repeat the carts as items
+        User user = userService.findByUsername(httpServletRequest.getRemoteUser());
         List<Cart> carts = user.getCarts();
         model.addAttribute("carts", carts);
-        List<CartItem> cartItems = cartItemService.findAll();
-        model.addAttribute("cartItems", cartItems);
+//        List<CartItem> cartItems = cartItemService.findAll();
+//        model.addAttribute("cartItems", cartItems);
         return "profile";
     }
 

@@ -1,43 +1,51 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
     <p>
-    <div>My Orders List</div>
-
-
+    <h2>My Orders List</h2>
+            <button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBikes" aria-expanded="false" aria-controls="collapseBikes">
+                Look bikes
+            </button>
 
     <#list carts as cart>
         <p>
-            <i>Order date is ${cart.orderDate}</i>
-            <i>Order status is ${cart.status}</i>
-            <i>Order total is ${cart.total} $</i>
+            <div><b>${cart.orderDate}</b></div>
+                <div><i>Order status is ${cart.status}</i></div>
+                    <div><i>Order total is ${cart.total} $</i></div>
+        <p>
+        </p>
+        <div class="collapse" id="collapseBikes">
+            <div class="card card-body">
+                <table>
+                    <thead>
+                    <tr>
+                        <th> model</th>
+                        <th> brand</th>
+                        <th> colour</th>
+                        <th> description</th>
+                        <th> amount</th>
+                        <th> price, $</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <#list cart.getCartItems() as cartItem>
+                        <tbody>
 
-        <table>
-        <thead>
-        <tr>
-            <th> model</th>
-            <th> brand</th>
-            <th> colour</th>
-            <th> description</th>
-            <th> amount</th>
-            <th> price, $</th>
-            <th></th>
-        </tr>
-        </thead>
-        <#list cart.getCartItems() as cartItem>
-            <tbody>
+                        <tr>
+                            <td>${cartItem.bike.name}</td>
+                            <td>${cartItem.getBike().brand}</td>
+                            <td>${cartItem.getBike().colour}</td>
+                            <td>"${cartItem.getBike().getDescription()}"</td>
+                            <td>${cartItem.amount}</td>
+                            <td>${cartItem.price}</td>
+                        </tr>
+                        </tbody>
 
-            <tr>
-                <td>${cartItem.bike.name}</td>
-                <td>${cartItem.getBike().brand}</td>
-                <td>${cartItem.getBike().colour}</td>
-                <td>"${cartItem.getBike().getDescription()}"</td>
-                <td>${cartItem.amount}</td>
-                <td>${cartItem.price}</td>
-            </tr>
-            </tbody>
+                    </#list>
+                </table>
+            </div>
+        </div>
 
-        </#list>
-        </table>
+
     <#else>
         No oders
 

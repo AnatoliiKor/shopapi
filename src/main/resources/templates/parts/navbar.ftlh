@@ -1,8 +1,9 @@
 <#include "security.ftlh">
+<#import "login.ftlh" as l>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">BIKE SHOP</a>
+        <a class="navbar-brand" href="/shop">BIKE SHOP</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,7 +26,11 @@
                 </li>
             </ul>
 
-            <div class="navbar-text">${name}</div>
+            <div class="navbar-text">${name} &#8239</div>
+            <#if name !="Guest"><@l.logout/>
+            <#else>
+                <a href="/login"> Sign In</a>
+            </#if>
         </div>
     </div>
 </nav>

@@ -3,6 +3,7 @@ package com.kor.shopapi.controller;
 import com.kor.shopapi.domain.Role;
 import com.kor.shopapi.domain.User;
 import com.kor.shopapi.repository.UserRepository;
+import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import java.util.Collections;
 @Controller
 public class RegistrationController {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping("/registration")
     public String registration(){
@@ -23,16 +24,10 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Model model){
-        User userFromDb = userRepository.findByUsername(user.getUsername());
-        if(userFromDb !=null) {
-            model.addAttribute("message", "User exists!");
+        if(!userService.addUser(user)) {
+            model.addAttribute("message", "User exists! Try another User name");
             return "registration";
         }
-        user.setActive(true);
-        user.setRegistrationDate();
-        user.setRoles(Collections.singleton(Role.USER));
-        userRepository.save(user);
-
         return "redirect:login";
     }
 

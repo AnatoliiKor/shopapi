@@ -1,10 +1,10 @@
 <#import "parts/common.ftlh" as c>
 <#import "parts/login.ftlh" as l>
 <@c.page>
-Add new user
-${message!}
+    <h2>Add new user</h2>
+    <p>
+    ${message!}
+    <p>
+    <@l.login path="/registration" button = "Register"/>
 
-<@l.login path="/registration" button = "Register"/>
-
-    <a href="/shop">main page</a>
 </@c.page>

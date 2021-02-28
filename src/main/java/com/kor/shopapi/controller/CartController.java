@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +50,6 @@ public class CartController {
 
     @GetMapping("/cart")
     public String cartItemList(HttpSession httpSession,
-//                               @AuthenticationPrincipal User user,
                                Model model) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
         int total = 0;
@@ -57,11 +58,10 @@ public class CartController {
                 total += c.getBike().getPrice();
             }
         }
-//            model.addAttribute("user_name", user.getUsername());
-            model.addAttribute("total", total);
-            model.addAttribute("cartItems", cartItems);
-            httpSession.setAttribute("total", total);
-            if (total == 0) httpSession.setAttribute("cartItems", null);
+        model.addAttribute("total", total);
+        model.addAttribute("cartItems", cartItems);
+        httpSession.setAttribute("total", total);
+        if (total == 0) httpSession.setAttribute("cartItems", null);
         return "cart";
     }
 
@@ -70,21 +70,24 @@ public class CartController {
                              HttpSession httpSession) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
         for (CartItem c : cartItems) {
-            if (c.getBike().getId() == Long.valueOf(id)) {cartItems.remove(c);return "redirect:cart";}
+            if (c.getBike().getId() == Long.valueOf(id)) {
+                cartItems.remove(c);
+                return "redirect:cart";
+            }
         }
         httpSession.setAttribute("cartItems", cartItems);
         return "redirect:cart";
     }
 
     @PostMapping("/checkout")
-    public String buy(@AuthenticationPrincipal User client,
+    public String buy(HttpServletRequest httpServletRequest,
                       HttpSession httpSession) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
         if (cartItems == null) return "redirect:shop";
-        User user = userService.findById(client.getId());
+        User user = userService.findByUsername(httpServletRequest.getRemoteUser());
         Cart cart = new Cart(user, cartItems, httpSession.getAttribute("total"));
         cartService.save(cart);
-        for(CartItem c : cartItems) {
+        for (CartItem c : cartItems) {
             c.setCart(cart);
             cartItemService.save(c);
         }

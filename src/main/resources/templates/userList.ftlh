@@ -1,9 +1,7 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-    <a href="/shop">main page</a>
-    <a href="/admin">admin</a>
 
-    <div>User list</div>
+    <h2>Users list</h2>
     <table>
         <thead>
         <tr>

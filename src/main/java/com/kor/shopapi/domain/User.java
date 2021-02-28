@@ -79,13 +79,14 @@ public class User implements UserDetails {
         return isActive();
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

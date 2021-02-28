@@ -1,10 +1,8 @@
 <#import "parts/common.ftlh" as c>
-<#import "parts/login.ftlh" as l>
 
 <@c.page>
-    <@l.logout/>
     <p>
-    <div> ADMIN</div>
+    <h2> ADMIN</h2>
 
     <p>
         <a href="/registration">Add new user</a>
