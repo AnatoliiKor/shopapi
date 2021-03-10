@@ -1,10 +1,10 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-<h2>User Editor</h2>
+<h2>${user.username}</h2>
 <p>
     <form method="post" action="/user">
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <input type="text" name="username" value="${user.username}"/>
+<#--        <input type="text" name="username" value="${user.username}"/>-->
         <input type="hidden" name="userId" value="${user.id}"/>
 <p>
     <#list roles as role>

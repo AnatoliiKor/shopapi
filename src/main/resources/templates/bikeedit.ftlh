@@ -2,7 +2,9 @@
 <@c.page>
     <h2>Bike Editor</h2>
 
-    <form method="post" action="/bike/${bike.id}" enctype="multipart/form-data">
+<#--    <form method="post" action="/bike/${bike.id}" enctype="multipart/form-data">-->
+    <form method="post" action="add" enctype="multipart/form-data">
+<#--    <form method="post" enctype="multipart/form-data">-->
         <div><#if bike.filename??>
                 <img src="/img/${bike.filename}">
             </#if>

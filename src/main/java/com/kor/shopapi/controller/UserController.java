@@ -5,14 +5,12 @@ import com.kor.shopapi.domain.User;
 import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -35,31 +33,29 @@ public class UserController {
     }
 
     @PostMapping
-    public String userSave(
-            @RequestParam String username,
-            @RequestParam (required = false) String active,
-            @RequestParam Map<String, String> form,
-            @RequestParam("userId") User user){
+    public String userSave(@RequestParam Map<String, String> form, @RequestParam("userId") User user) {
+        userService.save(user, form);
+        return "redirect:/user";
+    }
 
-        if (active!=null)  user.setActive(true);
-        else user.setActive(false);
-
-        user.setUsername(username);
-        Set<String> roles = Arrays.stream(Role.values())
-                .map(Role::name)
-                .collect(Collectors.toSet());
-        user.getRoles().clear();
-        for (String key : form.keySet()) {
-            if(roles.contains(key)) {
-                user.getRoles().add(Role.valueOf(key));
-            }
+    @GetMapping("/password")
+    public String passwordEditForm(@AuthenticationPrincipal User user, Model model) {
+        user = userService.findByUsername(user.getUsername());
+        model.addAttribute("user", user);
+        return "userPassword";
+    }
+    @PostMapping("/password")
+    public String setPassword(@RequestParam("userId") User user, String userPassword) {
+        if (!userPassword.equals("") && !user.getPassword().equals(userPassword)) {
+            user.setPassword(userPassword);
+            userService.setPassword(user);
         }
-        userService.save(user);
-       return "redirect:/user";
+
+        return "redirect:/user/password";
     }
 
     @PostMapping("/delete")
-    public String deleteUser (@RequestParam String id, Model model) {
+    public String deleteUser(@RequestParam String id) {
         userService.deleteUser(Long.valueOf(id));
         return "redirect:/user";
     }

@@ -1,5 +1,9 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
+   <h2>${user.username}</h2>
+    <a href="user/password">Change Password</a>
+
+
     <p>
     <h2>My Orders List</h2>
             <button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBikes" aria-expanded="false" aria-controls="collapseBikes">

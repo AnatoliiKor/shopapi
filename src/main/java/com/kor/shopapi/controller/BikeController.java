@@ -25,37 +25,33 @@ public class BikeController {
     @Value("${upload.path}")
     private String uploadPath;
 
-//    @GetMapping
-//    public String userList(Model model) {
-//        model.addAttribute(userService.findAll());
-//        return "userList";
-//    }
-
     @GetMapping("/newbike")
     public String newBike() {
         return "newbike";
     }
     
     @PostMapping("/add")
-    public String add(@ModelAttribute("bike") Bike bike,
+    public String addAndEdit(@ModelAttribute("bike") Bike bike,
                       @RequestParam("file")MultipartFile file) throws IOException {
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+//        if (file != null && !file.getOriginalFilename().isEmpty()) {
+//            File uploadDir = new File(uploadPath);
+//            if (!uploadDir.exists()) {
+//                uploadDir.mkdir();
+//            }
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+//
+//            file.transferTo(new File(uploadPath + "/" + resultFilename));
+//            bike.setFilename(resultFilename);
+//        }
+        bikeService.save(bike, file);
+//        bikeService.save(bike);
 
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-            bike.setFilename(resultFilename);
-        }
-        bikeService.save(bike);
         return "redirect:admin";
     }
 
     @PostMapping("/delete")
-    public String deleteById(@RequestParam String id, Model model) {
+    public String deleteById(@RequestParam String id) {
         bikeService.deleteById(Long.valueOf(id));
         return "redirect:admin";
     }
@@ -74,26 +70,23 @@ public class BikeController {
             @RequestParam("bikeId") Bike bike,
             @RequestParam("file")MultipartFile file) throws IOException {
 
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-                File uploadDir = new File(uploadPath);
-                if (!uploadDir.exists()) {
-                    uploadDir.mkdir();
-                }
-                String uuidFile = UUID.randomUUID().toString();
-                String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-                file.transferTo(new File(uploadPath + "/" + resultFilename));
-                bike.setFilename(resultFilename);
-            }
+//        if (file != null && !file.getOriginalFilename().isEmpty()) {
+//                File uploadDir = new File(uploadPath);
+//                if (!uploadDir.exists()) {
+//                    uploadDir.mkdir();
+//                }
+//                String uuidFile = UUID.randomUUID().toString();
+//                String resultFilename = uuidFile + "." + file.getOriginalFilename();
+//
+//                file.transferTo(new File(uploadPath + "/" + resultFilename));
+//                bike.setFilename(resultFilename);
+//            }
         bike.setName(name);
         bike.setDescription(description);
         bike.setPrice(Integer.valueOf(price));
         bike.setAmount(Integer.valueOf(amount));
-
-
-        bikeService.save(bike);
+//        bikeService.save(bike);
+        bikeService.save(bike, file);
         return "redirect:/admin";
     }
-
-
 }

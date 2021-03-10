@@ -51,12 +51,10 @@ public class MainController {
         return "main_page";
     }
 
-
-
     @GetMapping("/admin")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String admin(@AuthenticationPrincipal User user, @RequestParam(required = false) String filter, Model model) {
-        Iterable<User> users = userService.findAll();
+    public String admin(@RequestParam(required = false) String filter, Model model) {
+//        Iterable<User> users = userService.findAll();
         List<Bike> bikes;
         if (filter != null && !filter.isEmpty()) {
             bikes = bikeService.findByName(filter);
@@ -64,8 +62,6 @@ public class MainController {
             bikes = bikeService.findAll();
         }
         model.addAttribute("bikes", bikes);
-        model.addAttribute("user_name", user.getUsername());
-        model.addAttribute("users", users);
         model.addAttribute("bikes", bikes);
         model.addAttribute("filter", filter);
         return "admin";
@@ -76,9 +72,8 @@ public class MainController {
                           Model model) {
         User user = userService.findByUsername(httpServletRequest.getRemoteUser());
         List<Cart> carts = user.getCarts();
+        model.addAttribute("user", user);
         model.addAttribute("carts", carts);
-//        List<CartItem> cartItems = cartItemService.findAll();
-//        model.addAttribute("cartItems", cartItems);
         return "profile";
     }
 
