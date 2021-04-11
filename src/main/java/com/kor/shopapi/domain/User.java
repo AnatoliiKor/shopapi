@@ -17,6 +17,7 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
+    private String email;
     private boolean active;
     private LocalDate registrationDate;
 
@@ -40,6 +41,15 @@ public class User implements UserDetails {
     public LocalDate getRegistrationDate() {
         if (registrationDate==null) registrationDate = LocalDate.now();
         return registrationDate;
+    }
+
+    public String getEmail() {
+//        if (email == null) this.setEmail("No email");
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setRegistrationDate() {

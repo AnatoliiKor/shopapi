@@ -6,6 +6,7 @@
         <thead>
         <tr>
             <th> Name</th>
+            <th> Email</th>
             <th> Is active </th>
             <th> Registered </th>
             <th> Role</th>
@@ -15,6 +16,7 @@
         <#list users as user>
             <tr>
                 <td>${user.username}</td>
+                <td>${user.email}</td>
                 <td><input type="checkbox" ${user.active?string("checked","")} disabled></td>
                 <td>${user.registrationDate}</td>
                 <td><#list user.roles as role>${role}<#sep>, </#list></td>

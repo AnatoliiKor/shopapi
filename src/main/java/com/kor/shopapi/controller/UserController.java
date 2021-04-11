@@ -6,6 +6,7 @@ import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +15,20 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String userList(Model model) {
         model.addAttribute("users", userService.findAll());
         return "userList";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
     public String userEditForm(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
@@ -41,19 +45,38 @@ public class UserController {
     @GetMapping("/password")
     public String passwordEditForm(@AuthenticationPrincipal User user, Model model) {
         user = userService.findByUsername(user.getUsername());
+
         model.addAttribute("user", user);
         return "userPassword";
     }
     @PostMapping("/password")
-    public String setPassword(@RequestParam("userId") User user, String userPassword) {
-        if (!userPassword.equals("") && !user.getPassword().equals(userPassword)) {
+    public String setPassword(@RequestParam("userId") User user, String userPassword, String oldPassword) {
+// TODO
+        if (!user.getPassword().equals(passwordEncoder.encode(userPassword)) && !userPassword.equals("")) {
             user.setPassword(userPassword);
             userService.setPassword(user);
         }
-
-        return "redirect:/user/password";
+        return "redirect:/profile";
     }
 
+    @GetMapping("/email")
+    public String emailEditForm(@AuthenticationPrincipal User user, Model model) {
+        user = userService.findByUsername(user.getUsername());
+        model.addAttribute("user", user);
+        return "userEmail";
+    }
+
+    @PostMapping("/email")
+    public String setEmail(@RequestParam("userId") User user, String userEmail) {
+        if (!userEmail.equals("") && !user.getEmail().equals(userEmail)) {
+            user.setEmail(userEmail);
+            userService.setEmail(user);
+        }
+        return "redirect:/profile";
+    }
+
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/delete")
     public String deleteUser(@RequestParam String id) {
         userService.deleteUser(Long.valueOf(id));
