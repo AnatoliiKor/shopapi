@@ -4,13 +4,19 @@ import com.kor.shopapi.domain.Role;
 import com.kor.shopapi.domain.User;
 import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -66,14 +72,45 @@ public class UserController {
         return "userEmail";
     }
 
-    @PostMapping("/email")
-    public String setEmail(@RequestParam("userId") User user, String userEmail) {
-        if (!userEmail.equals("") && !user.getEmail().equals(userEmail)) {
-            user.setEmail(userEmail);
-            userService.setEmail(user);
-        }
-        return "redirect:/profile";
+//    @PostMapping("/email")
+//    public String setEmail(@RequestParam("userId") User user, String userEmail) {
+//        if (!userEmail.equals("") && !user.getEmail().equals(userEmail)) {
+//            user.setEmail(userEmail);
+//            userService.setEmail(user);
+//        }
+//        return "redirect:/profile";
+//    }
+
+//    @PostMapping("/email")
+//    public String setEmail(@RequestParam("userId")  @Valid User user,
+//                           BindingResult bindingResult,
+//                           Model model, String userEmail) {
+//        if (bindingResult.hasErrors()) {
+//            Map<String, String> errorMap = ControllerUtils.getErrors(bindingResult);
+//            model.mergeAttributes(errorMap);
+//            model.addAttribute("user", user);
+//            return "registration";
+//        } else {
+//            if (!userEmail.equals("") && !user.getEmail().equals(userEmail)) {
+//                user.setEmail(userEmail);
+//                userService.setEmail(user);
+//            }
+//            return "redirect:/profile";}
+//    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
+
 
 
     @PreAuthorize("hasAuthority('ADMIN')")

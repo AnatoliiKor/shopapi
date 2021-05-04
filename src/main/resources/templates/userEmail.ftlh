@@ -5,12 +5,21 @@
 Your Email is "${user.email}"
 
 <p>
-    <form method="post">
+    <form  action="/user/email"method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <input type="hidden" name="userId" value="${user.id}"/>
+    <div class="col-md-2">
     Type new
-        <input type="text" name="userEmail" value="${user.email}"/>
-    <button type="submit">Save Email</button>
+<#--        <input type="text" name="userEmail" value="${user.email}"/>-->
+    <input type="text" class="form-control ${(emailError??)?string('is-invalid', '')}" name="userEmail"/>
+        <#if emailError??>
+            <div class="invalid-feedback">
+                ${emailError}
+            </div>
+        </#if>
+        <input type="hidden" name="userId" value="${user.id}"/>
+    </div>
+    <input type="submit" value="Save Email"/>
+<#--    <button type="submit">Save Email</button>-->
     </form>
 
     </@c.page>

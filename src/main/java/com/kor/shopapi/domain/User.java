@@ -1,9 +1,12 @@
 package com.kor.shopapi.domain;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
@@ -15,9 +18,18 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "Fill in the fild")
+    @Length(max = 10, message = "Too long (more then 10 chracters)")
     private String username;
+    @NotBlank(message = "Fill in the fild")
     private String password;
+    @Transient
+//    @NotBlank(message = "Fill in the fild")
+    private String password2;
+    @Email
     private String email;
+
     private boolean active;
     private LocalDate registrationDate;
 
@@ -121,5 +133,13 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 }

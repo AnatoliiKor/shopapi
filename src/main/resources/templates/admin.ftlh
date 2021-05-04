@@ -18,7 +18,7 @@
         <button type="submit">Search</button>
         <#--        ${message!""}-->
     </form>
-    <table>
+    <table class="table table-striped auto__table table-condensed text-center">
         <thead>
         <tr>
             <th> Photo </th>
@@ -29,6 +29,7 @@
             <th> description</th>
             <th> category</th>
             <th> price, $</th>
+            <th> amount</th>
             <th> date</th>
             <th></th>
         </tr>
@@ -47,6 +48,7 @@
                 <td>"${bike.description}"</td>
                 <td>${bike.category}</td>
                 <td>${bike.price}</td>
+                <td>${bike.amount}</td>
                 <td>${bike.date}</td>
                 <td><a href="/bike/${bike.id}">edit</a></td>
                 <td>

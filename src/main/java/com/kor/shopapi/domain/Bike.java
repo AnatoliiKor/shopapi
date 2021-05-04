@@ -1,6 +1,9 @@
 package com.kor.shopapi.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,7 +18,11 @@ public class Bike {
     private String name;
     private String colour;
     private String description;
+    @Positive
+    @Digits(integer = 4, fraction = 0, message = "It must be an integer ranged from 1 to 9999")
     private Integer price;
+    @PositiveOrZero
+    @Digits(integer = 2, fraction = 0, message = "It must be an integer ranged from 0 to 99")
     private Integer amount;
     private LocalDate date;
     private String filename;
