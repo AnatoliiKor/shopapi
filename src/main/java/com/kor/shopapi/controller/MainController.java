@@ -61,16 +61,6 @@ public class MainController {
         return "admin";
     }
 
-    @GetMapping("/profile")
-    public String profile(HttpServletRequest httpServletRequest,
-                          Model model) {
-        User user = userService.findByUsername(httpServletRequest.getRemoteUser());
-        List<Cart> carts = user.getCarts();
-        model.addAttribute("user", user);
-        model.addAttribute("carts", carts);
-        return "profile";
-    }
-
     @GetMapping("/counter")
     public String counter(@RequestParam(required = false) String correct,
                           @RequestParam(required = false) String wrong,

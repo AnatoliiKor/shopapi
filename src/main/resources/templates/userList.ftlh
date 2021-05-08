@@ -27,7 +27,7 @@
                         <button type="submit">Delete</button>
                     </form>
                 </td>
-
+                <td><a href="/user/orders/${user.id}">Show user`s oders</a></td>
             </tr>
 
         <#else>

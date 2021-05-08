@@ -1,5 +1,6 @@
 package com.kor.shopapi.controller;
 
+import com.kor.shopapi.domain.Cart;
 import com.kor.shopapi.domain.Role;
 import com.kor.shopapi.domain.User;
 import com.kor.shopapi.services.UserService;
@@ -15,8 +16,10 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -34,12 +37,31 @@ public class UserController {
         return "userList";
     }
 
+    @GetMapping("/profile")
+    public String profile(HttpServletRequest httpServletRequest,
+                          Model model) {
+        User user = userService.findByUsername(httpServletRequest.getRemoteUser());
+        List<Cart> carts = user.getCarts();
+        model.addAttribute("user", user);
+        model.addAttribute("carts", carts);
+        return "profile";
+    }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
     public String userEditForm(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
         return "userEdit";
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/orders/{user}")
+    public String usersOders(@PathVariable User user, Model model) {
+        List<Cart> carts = user.getCarts();
+        model.addAttribute("user", user);
+        model.addAttribute("carts", carts);
+        return "usersOrders";
     }
 
     @PostMapping

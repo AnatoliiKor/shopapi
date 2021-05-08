@@ -22,7 +22,7 @@
                     <a class="nav-link" href="/cart">Cart</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile">Profile</a>
+                    <a class="nav-link" href="/user/profile">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/counter?clear=clear">Counter</a>
