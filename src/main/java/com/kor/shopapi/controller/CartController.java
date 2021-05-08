@@ -9,6 +9,7 @@ import com.kor.shopapi.services.CartItemService;
 import com.kor.shopapi.services.CartService;
 import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,4 +96,24 @@ public class CartController {
         httpSession.setAttribute("cartItems", null);
         return "redirect:cart";
     }
+
+
+    @GetMapping("/show/{cart}")
+    public String orderStatusChange(@PathVariable Cart cart, Model model) {
+        List<CartItem> cartItems = cart.getCartItems();
+        if (cartItems == null) return "redirect:shop";
+        model.addAttribute("cart", cart);
+        model.addAttribute("cartItems", cartItems);
+//
+//        User user = userService.findByUsername(httpServletRequest.getRemoteUser());
+//        Cart cart = new Cart(user, cartItems, httpSession.getAttribute("total"));
+//        cartService.save(cart);
+//        for (CartItem c : cartItems) {
+//            c.setCart(cart);
+//            cartItemService.save(c);
+//        }
+//        httpSession.setAttribute("cartItems", null);
+        return "userOrder";
+    }
+
 }
