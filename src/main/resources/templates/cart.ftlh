@@ -5,6 +5,11 @@
     <p>
     <h2> My CART</h2>
     <p>
+        <div class="alert alert-info" role="alert">
+    ${message!}
+</div>
+
+
     <table>
         <thead>
         <tr>

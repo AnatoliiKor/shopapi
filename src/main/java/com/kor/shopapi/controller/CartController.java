@@ -51,7 +51,7 @@ public class CartController {
     }
 
     @GetMapping("/cart")
-    public String cartItemList(HttpSession httpSession,
+    public String cartItemList(@RequestParam(defaultValue = "Your cart is empty.") String message, HttpSession httpSession,
                                Model model) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
         int total = 0;
@@ -62,6 +62,7 @@ public class CartController {
         }
         model.addAttribute("total", total);
         model.addAttribute("cartItems", cartItems);
+        model.addAttribute("message", message);
         httpSession.setAttribute("total", total);
         if (total == 0) httpSession.setAttribute("cartItems", null);
         return "cart";
@@ -94,7 +95,8 @@ public class CartController {
             cartItemService.save(c);
         }
         httpSession.setAttribute("cartItems", null);
-        return "redirect:cart";
+        return "redirect:cart?message=Your order is registered. You can see it in your profile.";
+        //TODO
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -109,11 +111,9 @@ public class CartController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/statusChange/{cart}")
     public String orderStatusChange(@PathVariable Cart cart, @RequestParam String status) {
-//        User user = cart.getUser();
         cart.setStatus(status);
         cartService.save(cart);
-//        return "/user/orders/"+user.getId(); TODO
-        return "userOrder";
+        return "redirect:/show/"+cart.getId();
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/allCarts")
