@@ -18,7 +18,11 @@ public class CartService {
     }
 
     public List<Cart> findAll() {
-        return (List<Cart>) cartRepository.findAll();
+        return cartRepository.findAll();
+    }
+
+    public List<Cart> findByStatus(String status) {
+        return cartRepository.findByStatus(status);
     }
 ////    public Product save(Product product) {
 ////        return productRepository.save(product);

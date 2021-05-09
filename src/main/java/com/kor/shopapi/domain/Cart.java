@@ -11,6 +11,7 @@ public class Cart {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+
     @ManyToOne(optional = true)
     @JoinColumn(name = "user_id")
     private User user;
@@ -63,13 +64,14 @@ public class Cart {
         this.id = id;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
+    public User getUser() {
+        return user;
+    }
 //
 //    public void setUser(User user) {
 //        this.user = user;
 //    }
+
 
     public LocalDateTime getOrderDate() {
         return orderDate;

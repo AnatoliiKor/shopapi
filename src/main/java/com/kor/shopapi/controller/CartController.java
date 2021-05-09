@@ -99,21 +99,31 @@ public class CartController {
 
 
     @GetMapping("/show/{cart}")
-    public String orderStatusChange(@PathVariable Cart cart, Model model) {
+    public String orderShow(@PathVariable Cart cart, Model model) {
         List<CartItem> cartItems = cart.getCartItems();
         if (cartItems == null) return "redirect:shop";
         model.addAttribute("cart", cart);
         model.addAttribute("cartItems", cartItems);
-//
-//        User user = userService.findByUsername(httpServletRequest.getRemoteUser());
-//        Cart cart = new Cart(user, cartItems, httpSession.getAttribute("total"));
-//        cartService.save(cart);
-//        for (CartItem c : cartItems) {
-//            c.setCart(cart);
-//            cartItemService.save(c);
-//        }
-//        httpSession.setAttribute("cartItems", null);
         return "userOrder";
+    }
+
+    @PostMapping("/statusChange/{cart}")
+    public String orderStatusChange(@PathVariable Cart cart, @RequestParam String status) {
+//        User user = cart.getUser();
+        cart.setStatus(status);
+        cartService.save(cart);
+//        return "/user/orders/"+user.getId(); TODO
+        return "userOrder";
+    }
+
+    @GetMapping("/allCarts")
+    public String showAllCarts(@RequestParam (required = false) String status, Model model) {
+        List<Cart> carts;
+        if (status !=null) {
+            carts = cartService.findByStatus(status);
+        } else {carts = cartService.findAll();}
+        model.addAttribute("carts", carts);
+        return "allCarts";
     }
 
 }
