@@ -97,7 +97,7 @@ public class CartController {
         return "redirect:cart";
     }
 
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/show/{cart}")
     public String orderShow(@PathVariable Cart cart, Model model) {
         List<CartItem> cartItems = cart.getCartItems();
@@ -106,7 +106,7 @@ public class CartController {
         model.addAttribute("cartItems", cartItems);
         return "userOrder";
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/statusChange/{cart}")
     public String orderStatusChange(@PathVariable Cart cart, @RequestParam String status) {
 //        User user = cart.getUser();
@@ -115,13 +115,13 @@ public class CartController {
 //        return "/user/orders/"+user.getId(); TODO
         return "userOrder";
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/allCarts")
-    public String showAllCarts(@RequestParam (required = false) String status, Model model) {
+    public String showAllCarts(@RequestParam (required = false) String status, @RequestParam (required = false) String sort, Model model) {
         List<Cart> carts;
         if (status !=null) {
             carts = cartService.findByStatus(status);
-        } else {carts = cartService.findAll();}
+        } else {carts = cartService.findAll(sort);}
         model.addAttribute("carts", carts);
         return "allCarts";
     }

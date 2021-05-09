@@ -84,7 +84,7 @@ public class UserController {
             user.setPassword(userPassword);
             userService.setPassword(user);
         }
-        return "redirect:/profile";
+        return "redirect:/user/profile";
     }
 
     @GetMapping("/email")
@@ -94,14 +94,14 @@ public class UserController {
         return "userEmail";
     }
 
-//    @PostMapping("/email")
-//    public String setEmail(@RequestParam("userId") User user, String userEmail) {
-//        if (!userEmail.equals("") && !user.getEmail().equals(userEmail)) {
-//            user.setEmail(userEmail);
-//            userService.setEmail(user);
-//        }
-//        return "redirect:/profile";
-//    }
+    @PostMapping("/email")
+    public String setEmail(@RequestParam("userId") User user, String userEmail) {
+        if (!userEmail.equals("") && !user.getEmail().equals(userEmail)) {
+            user.setEmail(userEmail);
+            userService.setEmail(user);
+        }
+        return "redirect:/user/profile";
+    }
 
 //    @PostMapping("/email")
 //    public String setEmail(@RequestParam("userId")  @Valid User user,

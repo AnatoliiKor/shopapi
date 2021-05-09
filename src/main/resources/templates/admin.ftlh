@@ -5,7 +5,7 @@
     <h2> ADMIN</h2>
 
     <p>
-        <a href="/allCarts">Show ALL ORDERS</a>
+        <a href="/allCarts?sort=id">Show ALL ORDERS</a>
     <p>
         <a href="/user">Show all users</a>
     <p>

@@ -2,9 +2,18 @@
 <@c.page>
     <p>
     <a href="/admin">Back to ADMIN PAGE</a>
+    <p>
     <a href="/allCarts?status=registered">registered</a>
     <a href="/allCarts?status=paid">paid</a>
     <a href="/allCarts?status=canceled">canceled</a>
+    <div>
+    Show ALL and SORT by
+    <a href="/allCarts?sort=id">ID</a>
+    <a href="/allCarts?sort=user">USER</a>
+    <a href="/allCarts?sort=orderDate">DATE</a>
+    <a href="/allCarts?sort=total">TOTAL</a>
+    <a href="/allCarts?sort=status">STATUS</a>
+</div>
 
 
     <#list carts as cart>

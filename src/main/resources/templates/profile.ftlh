@@ -2,9 +2,9 @@
 <@c.page>
    <h2>${user.username}</h2>
     Email: ${user.email}
-    <a href="user/email">Change Email</a>
+    <a href="email">Change Email</a>
     <p>
-    <a href="user/password">Change Password</a>
+    <a href="password">Change Password</a>
 
     <p>
     <h2>My Orders List</h2>
