@@ -8,6 +8,7 @@ import com.kor.shopapi.repository.CounterRepository;
 import com.kor.shopapi.services.BikeService;
 import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -17,12 +18,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class MainController {
@@ -42,7 +47,7 @@ public class MainController {
     private CounterRepository counterRepository;
 
     @GetMapping("/")
-    public String greeting(Model model) {
+    public String greeting() {
         return "greeting";
     }
 
@@ -122,7 +127,7 @@ public class MainController {
         if (wrongNumber == 5) {
             model.addAttribute("finish", "Yoi did 5 mistakes. " +
                     "Time is " + formattedDouble + ", succes is " + succes + "%. The result is saved");
-            Counter counter = new Counter(correctNumber,time, succes);
+            Counter counter = new Counter(correctNumber, time, succes);
             counterRepository.save(counter);
 
             wrongNumber = 0;
@@ -138,6 +143,11 @@ public class MainController {
     public String addAndEdit(@ModelAttribute("counter") Counter counter) {
         counterRepository.save(counter);
         return "redirect:/counter?clear=pause";
+    }
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
     }
 
 

@@ -38,7 +38,8 @@
                 <td>"${cartItem.bike.getDescription()}"</td>
                 <td>${cartItem.amount}</td>
                 <td>${cartItem.price}</td>
-                <td> <form method="post" action="deletecartitem?id=${cartItem.bike.id}">
+                <td> <form method="post" action="deletecartitem">
+                        <input type="hidden" name="id" value="${cartItem.bike.id}"/>
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                         <button type="submit">Delete</button>
                     </form> </td>

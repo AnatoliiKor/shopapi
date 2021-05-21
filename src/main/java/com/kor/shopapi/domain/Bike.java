@@ -4,11 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class Bike {
+public class Bike implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;

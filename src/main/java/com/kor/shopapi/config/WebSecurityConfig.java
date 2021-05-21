@@ -34,12 +34,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/registration", "/shop/**", "/static/**", "/buy", "/cart", "/img/**", "/bikes/**", "/counter/**").permitAll()
+                    .antMatchers("/", "/registration", "/shop/**", "/static/**",
+                            "/buy", "/cart", "/img/**", "/bikes/**", "/counter/**", "/hello2/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/login")
                     .permitAll()
+                .and()
+                    .rememberMe()
                 .and()
                     .logout()
                     .permitAll();

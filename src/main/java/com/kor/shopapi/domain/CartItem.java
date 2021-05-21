@@ -1,9 +1,10 @@
 package com.kor.shopapi.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class CartItem {
+public class CartItem implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;

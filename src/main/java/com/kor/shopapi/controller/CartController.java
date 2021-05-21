@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -51,7 +52,7 @@ public class CartController {
     }
 
     @GetMapping("/cart")
-    public String cartItemList(@RequestParam(defaultValue = "Your cart is empty.") String message, HttpSession httpSession,
+    public String cartItemList(@RequestParam(defaultValue = "You may check out or continue shopping") String message, HttpSession httpSession,
                                Model model) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
         int total = 0;
@@ -72,10 +73,10 @@ public class CartController {
     public String deleteById(@RequestParam String id,
                              HttpSession httpSession) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
-        for (CartItem c : cartItems) {
-            if (c.getBike().getId() == Long.valueOf(id)) {
-                cartItems.remove(c);
-                return "redirect:cart";
+        for (Iterator<CartItem> iterator = cartItems.iterator(); iterator.hasNext();) {
+            CartItem cartItem = iterator.next();
+            if (cartItem.getBike().getId() == Long.valueOf(id)) {
+                iterator.remove();
             }
         }
         httpSession.setAttribute("cartItems", cartItems);
@@ -108,20 +109,24 @@ public class CartController {
         model.addAttribute("cartItems", cartItems);
         return "userOrder";
     }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/statusChange/{cart}")
     public String orderStatusChange(@PathVariable Cart cart, @RequestParam String status) {
         cart.setStatus(status);
         cartService.save(cart);
-        return "redirect:/show/"+cart.getId();
+        return "redirect:/show/" + cart.getId();
     }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/allCarts")
-    public String showAllCarts(@RequestParam (required = false) String status, @RequestParam (required = false) String sort, Model model) {
+    public String showAllCarts(@RequestParam(required = false) String status, @RequestParam(required = false) String sort, Model model) {
         List<Cart> carts;
-        if (status !=null) {
+        if (status != null) {
             carts = cartService.findByStatus(status);
-        } else {carts = cartService.findAll(sort);}
+        } else {
+            carts = cartService.findAll(sort);
+        }
         model.addAttribute("carts", carts);
         return "allCarts";
     }
