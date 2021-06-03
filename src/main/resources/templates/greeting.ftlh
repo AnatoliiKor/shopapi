@@ -24,6 +24,5 @@
 
     <div>
         <a href="/hello">Try languages</a>
-        <a href="/hello2">Try languages</a>
     </div>
 </@c.page>
