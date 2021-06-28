@@ -62,4 +62,5 @@ public class CartItem implements Serializable {
     public void setAmount(Integer amount) {
         this.amount = amount;
     }
+
 }

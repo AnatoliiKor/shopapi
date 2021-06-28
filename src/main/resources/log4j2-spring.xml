@@ -31,7 +31,11 @@
         </Root>
 
         <!-- LOG "com.baeldung*" at TRACE level -->
-        <Logger name="com.baeldung" level="trace"></Logger>
+        <Logger name="com.baeldung" level="info"></Logger>
+        <Logger name="com" level="info">
+<!--            <AppenderRef ref="RollingFile" />-->
+<!--            <AppenderRef ref="Console" />-->
+        </Logger>
     </Loggers>
 
 </Configuration>

@@ -1,14 +1,12 @@
 package com.kor.shopapi.controller;
 
 import com.kor.shopapi.domain.Bike;
-import com.kor.shopapi.domain.Cart;
 import com.kor.shopapi.domain.Counter;
-import com.kor.shopapi.domain.User;
 import com.kor.shopapi.repository.CounterRepository;
 import com.kor.shopapi.services.BikeService;
+import com.kor.shopapi.services.MyLogs;
 import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -17,17 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 
 @Controller
 public class MainController {
@@ -54,6 +43,7 @@ public class MainController {
     @GetMapping("/admin")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String admin(@RequestParam(required = false) String filter, Model model) {
+        MyLogs.logger.warn("Admin signed up");
         List<Bike> bikes;
         if (filter != null && !filter.isEmpty()) {
             bikes = bikeService.findByName(filter);

@@ -3,6 +3,7 @@ package com.kor.shopapi.controller;
 import com.kor.shopapi.domain.Cart;
 import com.kor.shopapi.domain.Role;
 import com.kor.shopapi.domain.User;
+import com.kor.shopapi.services.MyLogs;
 import com.kor.shopapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,13 +12,11 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,9 +79,11 @@ public class UserController {
     @PostMapping("/password")
     public String setPassword(@RequestParam("userId") User user, String userPassword, String oldPassword) {
 // TODO
+        MyLogs.logger.warn("Admin is trying to change password");
         if (!user.getPassword().equals(passwordEncoder.encode(userPassword)) && !userPassword.equals("")) {
             user.setPassword(userPassword);
             userService.setPassword(user);
+            MyLogs.logger.warn("changed password");
         }
         return "redirect:/user/profile";
     }
@@ -100,6 +101,7 @@ public class UserController {
             user.setEmail(userEmail);
             userService.setEmail(user);
         }
+        MyLogs.logger.error("Admin is trying to change email");
         return "redirect:/user/profile";
     }
 

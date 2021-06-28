@@ -4,10 +4,7 @@ import com.kor.shopapi.domain.Bike;
 import com.kor.shopapi.domain.CartItem;
 import com.kor.shopapi.domain.Cart;
 import com.kor.shopapi.domain.User;
-import com.kor.shopapi.services.BikeService;
-import com.kor.shopapi.services.CartItemService;
-import com.kor.shopapi.services.CartService;
-import com.kor.shopapi.services.UserService;
+import com.kor.shopapi.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -71,12 +68,14 @@ public class CartController {
 
     @PostMapping("/deletecartitem")
     public String deleteById(@RequestParam String id,
+                             @AuthenticationPrincipal User user,
                              HttpSession httpSession) {
         List<CartItem> cartItems = (List<CartItem>) httpSession.getAttribute("cartItems");
         for (Iterator<CartItem> iterator = cartItems.iterator(); iterator.hasNext();) {
             CartItem cartItem = iterator.next();
             if (cartItem.getBike().getId() == Long.valueOf(id)) {
                 iterator.remove();
+                MyLogs.logger.info(cartItem.getBike().getName() + "is deleted by " + user.getUsername());
             }
         }
         httpSession.setAttribute("cartItems", cartItems);
